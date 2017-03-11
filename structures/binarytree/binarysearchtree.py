@@ -104,6 +104,7 @@ class BSTree:
 
         return self._postorder()
 
+    # helper functions
     def _preorder(self):
 
         res = []
@@ -135,8 +136,6 @@ class BSTree:
     def _biggest(self):
 
         return self.right._biggest() if self.right else self
-        
-
 
     def _str(self, ext=''):
         
