@@ -83,14 +83,58 @@ class BSTree:
         else:
             return self._value
 
+    def preorder(self):
+        ''' (BSTree) -> list
+        Returns a list containing the elements of this BSTree in preorder traversal.
+        '''
+
+        return self._preorder()
+
+    def inorder(self):
+        ''' (BSTree) -> list
+        Returns a list containing the elements of this BSTree in inorder traversal.
+        '''
+
+        return self._inorder()
+
+    def postorder(self):
+        ''' (BSTree) -> list
+        Returns a list containing the elements of this BSTree in postorder traversal.
+        '''
+
+        return self._postorder()
+
+    def _preorder(self):
+
+        res = []
+        res.append(self._value)
+        res += self.left._preorder() if self.left else []
+        res += self.right._preorder() if self.right else []
+        return res
+
+    def _inorder(self):
+
+        res = []
+        res += self.left._inorder() if self.left else []
+        res.append(self._value)
+        res += self.right._inorder() if self.right else []
+        return res
+
+    def _postorder(self):
+
+        res = []
+        res += self.left._postorder() if self.left else []
+        res += self.right._postorder() if self.right else []
+        res.append(self._value)
+        return res
 
     def _soccessor(self):
 
-        return self.right._biggest()
+        return self.left._biggest()
 
     def _biggest(self):
 
-        return self.right._biggest(index) if self.right else self
+        return self.right._biggest() if self.right else self
         
 
 
@@ -114,6 +158,7 @@ if __name__ == "__main__":
     bs.insert(4,4)
 
     print(bs)
-    bs.remove(5)
+    bs.remove(1)
     print(bs)
     print(bs.get(7))
+    print(bs.postorder())
